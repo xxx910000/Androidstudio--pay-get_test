@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "949794017307",
+    "firebase_url": "https://pay-get-fortest-project.firebaseio.com",
+    "project_id": "pay-get-fortest-project",
+    "storage_bucket": "pay-get-fortest-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949794017307:android:bec363fb48979e54fe28be",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949794017307-qgdhceq20bd161t0upa3lf9te0b152df.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "764b1afe6cdebe09c0808593452cd1e2faff538f"
+          }
+        },
+        {
+          "client_id": "949794017307-jc36tpbvp7vuit0o7m66k44664viflmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAztI3ylvfY1WgXXa-ni0E9DDtVkx0IReY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949794017307-jc36tpbvp7vuit0o7m66k44664viflmr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
