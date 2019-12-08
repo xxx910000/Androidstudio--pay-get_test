@@ -39,15 +39,20 @@ public class pay extends AppCompatActivity {
         surfaceView=(SurfaceView)findViewById(R.id.sfv);
         textView=(TextView)findViewById(R.id.sid);
         EditText money=(EditText)findViewById(R.id.money);
+        final String money_ = money.getText().toString();
 
         Button paymoney=(Button)findViewById(R.id.paymoney);
         paymoney.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myid = database.getReference("paymoney");
+                DatabaseReference paymoney = database.getReference("paymoney");
 
-                myid.setValue(id.getText().toString());
+                String getid = getSharedPreferences("saveid",MODE_PRIVATE)
+                        .getString("ID","");
+
+                String pay = new String(getid+"付給"+textView.getText().toString()+money_+"元");
+                paymoney.setValue(pay);
 
                 Intent intent = new Intent();
                 intent.setClass(pay.this, MainPage.class);

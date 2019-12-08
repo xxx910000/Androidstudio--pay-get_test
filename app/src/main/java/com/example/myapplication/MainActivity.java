@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,16 +20,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button sendid = (Button) findViewById(R.id.sendid);
-        final EditText id =(EditText) findViewById(R.id.inputid);
 
 
         sendid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myid = database.getReference("ID");
+                EditText id =(EditText) findViewById(R.id.inputid);
+                String id_ =id.getText().toString();
+                SharedPreferences saveid = getSharedPreferences("saveid",MODE_PRIVATE);
+                saveid.edit()
+                        .putString("ID",id_)
+                        .commit();
 
-                myid.setValue(id.getText().toString());
 
                 Intent intent =new Intent(MainActivity.this,MainPage.class);
                 startActivity(intent);
