@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -31,6 +32,7 @@ public class pay extends AppCompatActivity {
     CameraSource cameraSource;
     BarcodeDetector barcodeDetector;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,21 +40,30 @@ public class pay extends AppCompatActivity {
 
         surfaceView=(SurfaceView)findViewById(R.id.sfv);
         textView=(TextView)findViewById(R.id.sid);
-        EditText money=(EditText)findViewById(R.id.money);
-        final String money_ = money.getText().toString();
+
 
         Button paymoney=(Button)findViewById(R.id.paymoney);
         paymoney.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                int c = getSharedPreferences("count",MODE_PRIVATE)
+                        .getInt("count",0);
+
+                EditText money=(EditText)findViewById(R.id.money);
+                String money_ = money.getText().toString();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference paymoney = database.getReference("paymoney");
 
                 String getid = getSharedPreferences("saveid",MODE_PRIVATE)
                         .getString("ID","");
 
-                String pay = new String(getid+"付給"+textView.getText().toString()+money_+"元");
-                paymoney.setValue(pay);
+                String pay = new String(getid+"付給"+textView.getText().toString()+"  "+money_+"元");
+                paymoney.child(String.valueOf(c)).setValue(pay);
+                c++;
+                SharedPreferences count = getSharedPreferences("count",MODE_PRIVATE);
+                count.edit()
+                        .putInt("count",c)
+                        .commit();
 
                 Intent intent = new Intent();
                 intent.setClass(pay.this, MainPage.class);

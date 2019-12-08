@@ -25,8 +25,12 @@ public class show extends AppCompatActivity {
         paymoney.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.toString();
-                show.setText(value);
+                String value="";
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    value += snapshot.getValue(String.class);
+                    value+="\n";
+                }
+                show.setText(value + "\n");
             }
 
             @Override
